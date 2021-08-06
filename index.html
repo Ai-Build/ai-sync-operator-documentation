@@ -1,0 +1,636 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AiSync Operator Documentation</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="58396452-2371-4f37-b439-7077deac1b23" class="page sans"><header><h1 class="page-title">AiSync Operator Documentation</h1></header><div class="page-body"><nav id="fa4ba4cf-d3da-4f45-b987-7568aa53c8c2" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#75acef38-a5ab-4214-a6dd-2bc744543c00">IO</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#97712f22-0ff8-440b-af3f-7e02a8bbdfb2">Load Mesh</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1c069697-bad0-410d-879e-b835898ee6d1">Load Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8081935e-d051-4754-aa65-72e6d594442f">SLICERS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f7641383-5db5-4990-be46-d8503c0ed359">Angular Contours</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a69250ea-8328-42be-bce8-8d83e030c510">Horizontal Contours</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9d313a03-628c-4502-8026-f0aaa2394458">Horizontal Slicing</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7c968187-d76b-4b05-b1cd-a8683ffa6e27">Multi Planar Contours</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8cbf64b4-a70a-4eea-bcf3-466fab1dce3a">Non Planar Contours</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9c8e508c-c59b-4755-9b1c-555b6beddf1c">TOOLPATH</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c598a78d-538f-4286-984d-e747506dca93">Toolpath Generator Filament</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#db2a0959-7322-4a00-9133-58ac9947eba4">Toolpath Generator Pellet</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#99aeaf9e-4c5e-4e6c-bc1a-703720e2cdad">DATA OPERATIONS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e8b9cb1b-d3c4-4b85-b87d-75a3288889ae">Combine Data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3b9f297a-e647-4cf3-a8c7-ebff350997d4">Reverse Data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c9ce55bb-1ae3-4c6d-b645-f344d7d90571">Set Layer</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#30465a98-5f03-44c0-88ba-89a401ad235a">Set Layer Height</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5ce10492-faac-4f44-8848-c3ddbf21ae62">Set Line Thickness</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#befa9547-8658-4be6-bad5-932ae2160db9">Set Line Type</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#06c41b3f-6955-4264-8f4f-c8f72798aa7e">Set Orientation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#808d9de9-9467-450a-af1b-625421cc9315">Set Speed Multiplier</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6e14ad0f-9eee-4537-bc53-ad99bb049b08">WeaveData</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6a21a5c5-fa95-4214-914c-5f0479a16ed9">FILTERS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c2060c9f-5c5e-4590-b095-256f2afda050">Filter By Analysis Data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1039ecab-2558-403b-9fd7-137274bc6f55">Filter By Average Height</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6c8d60a3-9cbc-4b63-a15d-b3cb7a2f8965">Filter By Index Range</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6927d4d7-a12c-469e-857f-2628c6d65a3c">Filter By Layer</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#09f0125e-84aa-46b3-ba40-9fe2fba662dc">Filter By Layer Height</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4772d3ac-383e-4311-9bb7-7bfcac3b085a">Filter By Length</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9c996271-9dd7-4421-b9fb-0e508418027b">Filter By Linetype</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cf64829c-e332-456f-b28f-7563d02bb00c">Filter Closed Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2bc6df48-49bd-4744-9163-462993ab1fa1">Filter Internal Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7142ab3e-c00f-426d-934c-7e4bb7d022e0">Filter Difference</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8e5deb7f-8649-4d1f-878b-cbb4ffc72a35">GEOMETRY</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c6031540-8c9d-4793-9c36-0935d2a2fe9c">Align Seams</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0ed276ba-0821-40d7-beca-5a5c904bb4dd">Brim</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#66727654-b640-4990-9015-4799f9a9c758">Close Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3eeef881-78c5-4054-9a80-73be96b2d894">Connect Open Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a51fad9f-add0-442c-a010-8ef7c482ddf7">Contours At Plane</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#59310fd8-78b9-4dc1-94d8-0ff02f1c843d">Get Naked Edges From Mesh</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ea319d82-3a10-4c71-966b-c06754c8ac78">Infill 2D</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cb54812a-c865-4bb8-b5d7-1c3310b2daba">Join Meshes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b89ad90a-d93d-40cf-a5be-14df7bceebd7">Make Uniform</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d133a193-2a27-4bb2-9079-5b6f3f9fcbae">Offset</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9dd5d024-d925-4d6d-9331-8243dbe4d43b">Primer</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#82e46c8e-6eba-45fc-a8b8-a66704cd6393">Rebuild Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7ea7bfd9-40f5-432a-ba94-fa19f3d077eb">Reduce Density</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd97eed-c763-45da-9402-cdf4884a0906">Reverse Direction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e145c88f-7847-4b0a-891e-f718cb293326">Spiral</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#28c39544-efd8-4f95-8b33-0bb2ed720133">Tween Meshes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#92f15d35-6a3e-4a68-bdc4-2d5991cf6879">Tween Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e5ca53df-eb4f-4adc-b7ea-02ca4255a822">SEQUENCING</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#913ffbb1-e5fd-420b-a917-aa6fb0639b0f">Sort By Area</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cfc8d378-0701-4d9f-b4df-91a9f44c3895">Sort By Average Height</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#701f6f35-1da4-4184-b493-8153803aebee">Sort By Layer</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e2bb0fe-e750-4461-a64f-8320ed0af5e2">Sort By Layer Linetype</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5b896d10-29c7-4654-8137-ac1891269507">Sort By Length</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6d156e05-5943-4f0b-be4a-a58647968830">Sort By Linetype</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d977e402-a382-4f87-bfad-eb2550adb5b3">TRANSFORMATIONS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b2cf459c-2289-4e46-a5d6-aaa6d037e024">Center Mesh</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9b230f03-2091-4f48-87d4-f930b28143a1">Center Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#abecef30-fe4d-4c25-baa2-c5a3c10cf633">Move Mesh</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4d3c5a7c-6826-4e26-8e7a-d74446d1475f">Move Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3b0d4d89-1309-4c7e-add8-5df9bfe38f93">Move Mesh To Base</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c272ba87-88e5-41a6-9c12-2e58b5287a3b">Move Polylines To Base</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#77baa99e-2033-40c8-8eae-474f144d7911">Rotate Mesh</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#31dd975f-f42c-4ada-8528-13f518e590db">Rotate Polylines</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5a167e2d-1088-4772-86bf-a64c166637db">Scale Mesh</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e290a389-7975-4aec-96ba-7fe946e85264">Scale Polylines</a></div></nav><hr id="4b46a9c7-fef0-4f50-83a2-b867a91c6535"/><hr id="7355a14e-4a38-4da4-8440-1129b4ec6de5"/><h2 id="75acef38-a5ab-4214-a6dd-2bc744543c00" class="">IO</h2><hr id="c3e7c30e-bec1-4a27-b33b-cc9fc7530ef9"/><h3 id="97712f22-0ff8-440b-af3f-7e02a8bbdfb2" class="">Load Mesh</h3><p id="baefa2d5-1884-4b62-9a7c-e23e287da0d0" class="">Loads a file from the files library of the project that represents a mesh geometry. Supported file format: obj.</p><p id="1e4d7fbd-d5d0-44fa-be5f-de41fd645036" class=""><em>Inputs:</em></p><ul id="725fb545-5cfc-459d-b1d2-eb046ae0deaf" class="bulleted-list"><li><strong>In </strong>(Geometry file)</li></ul><p id="d087d31c-ce92-40af-80ff-d31195b0cfe3" class=""><em>Outputs:</em></p><ul id="e9114fd9-f622-4fad-af85-ddf915a320b6" class="bulleted-list"><li><strong>Out</strong> (Mesh)</li></ul><hr id="5707c7a7-374f-40c8-8467-6d77465a7a06"/><h3 id="1c069697-bad0-410d-879e-b835898ee6d1" class="">Load Polylines</h3><p id="f669f664-2d64-4558-8d29-a6715fc11c5b" class="">Loads a file from the files library of the project that represents polyline geometry . Supported file format: aib.</p><p id="98794fd1-3783-495a-83d0-bbf88494ab90" class=""><em>Inputs:</em></p><ul id="d7e7fb34-46c5-4bb1-8724-a0bad0213af8" class="bulleted-list"><li><strong>In </strong>(Geometry file)</li></ul><p id="796ea30f-1d3a-4ad1-9077-7f859a1b3179" class=""><em>Outputs:</em></p><ul id="36ea4f8d-1e1f-4d42-89e2-b789f892b6a2" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="5453a1f4-c949-430a-b28e-1b7f89403222"/><hr id="420bfe47-3c91-41f6-b354-32417a5d8235"/><h2 id="8081935e-d051-4754-aa65-72e6d594442f" class="">SLICERS</h2><hr id="116b9c8d-949c-4c9f-94fb-301ce1872c3c"/><h3 id="f7641383-5db5-4990-be46-d8503c0ed359" class="">Angular Contours</h3><p id="a899c5dd-9eb2-42bc-a78f-28a6300e50c1" class="">Slices the input solid geometry with non-horizontal planes at the specified angle in relation the horizontal plane. Returns a list of contours as polylines.</p><p id="077a96f1-c467-4a22-928c-8022de84b424" class=""><em>Inputs:</em></p><ul id="21b6ab70-bdb8-4482-8e64-2bd4942e9bb3" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="056cb1e3-08c2-4bdf-9db3-59492ea6dcea" class="bulleted-list"><li><strong>LayerHeight </strong>(decimal) | Spacing between planes for slicing the geometry</li></ul><ul id="f1f51394-6c12-4921-8852-7cfa2197e01d" class="bulleted-list"><li><strong>WallThickness </strong>(decimal) | Wall thickness defined in mm</li></ul><ul id="dcc72124-3ec2-40f4-97e3-372152c5b5c2" class="bulleted-list"><li><strong>PlaneRotX </strong>(decimal) | Plane angle in relation to the horizontal plane in workspace X-axis defined in degrees</li></ul><ul id="7ac400a3-b042-4271-bdcd-4c2063c73ae8" class="bulleted-list"><li><strong>PlaneRotY </strong>(decimal) | Plane angle in relation to the horizontal plane in workspace Y-axis defined in degrees</li></ul><ul id="c209459c-aefa-488e-ad9d-01c6fed3259c" class="bulleted-list"><li><strong>PlaneRotZ </strong>(decimal) | Plane angle in relation to the horizontal plane in workspace Z-axis defined in degrees</li></ul><p id="7bcd624e-9c98-4257-af7b-9f295a189178" class=""><em>Outputs:</em></p><ul id="53a08ee0-f363-42d8-ba36-9db39192fedb" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="08a03245-06b8-4c59-b536-d9acae62551b"/><h3 id="a69250ea-8328-42be-bce8-8d83e030c510" class="">Horizontal Contours</h3><p id="dbdf5236-6dbb-4c7e-a094-7668ff45f956" class="">Slices the input solid geometry with horizontal planes. Returns a list of contours as polylines.</p><p id="ad4b48bd-b457-484c-af9a-0ea8ea43c5f2" class=""><em>Inputs:</em></p><ul id="75bd9130-8e28-4d15-a266-d4c6114283f3" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="559fbcff-5069-47bc-8b03-e01f0f95044d" class="bulleted-list"><li><strong>LayerHeight </strong>(decimal) | Spacing between planes for slicing the geometry defined in mm</li></ul><ul id="d1aad6e2-3ee5-41a7-a702-00985e325216" class="bulleted-list"><li><strong>WallThickness </strong>(decimal) | Wall thickness defined in mm</li></ul><p id="1428a7ae-7269-4e08-8874-8038d8d1462c" class=""><em>Outputs:</em></p><ul id="486989b9-fe21-4a27-85b5-64083b6786bb" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="d0a146de-5a82-4370-9039-ccc27b2ee2f3"/><h3 id="9d313a03-628c-4502-8026-f0aaa2394458" class="">Horizontal Slicing</h3><p id="af3c7a08-78b1-4113-971c-d1c9bc27e704" class="">High-level operator for slicing the geometry horizontally and adding multiple walls and infill.</p><p id="f9afa026-3547-407b-bfb0-3cb66cbdfa01" class=""><em>Inputs:</em></p><ul id="39203b51-731a-4d52-8ac5-890b10f264d4" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="aecddab1-b9cd-4618-bc7e-f975b7ea968e" class="bulleted-list"><li><strong>LayerHeight </strong>(decimal) | Spacing between planes for slicing the geometry defined in mm</li></ul><ul id="ef430f1e-191d-4275-b998-e240d25e3d6b" class="bulleted-list"><li><strong>WallCount </strong>(integer) | Number of walls to be created</li></ul><ul id="55d41d81-dcb3-49ec-aae0-94a3d3c86838" class="bulleted-list"><li><strong>OuterWidth </strong>(decimal) | Thickness of outer walls defined in mm</li></ul><ul id="e591ca17-cde0-4b97-afc7-52a924732553" class="bulleted-list"><li><strong>InnerWidth </strong>(decimal) | Thickness of inner walls defined in mm</li></ul><ul id="38cc4ec9-75ac-4291-ba73-d2050f5bbc99" class="bulleted-list"><li><strong>CompensateWidth </strong>(boolean) | If enabled, the outer wall will be created by half the amount of the outer width inwards to compensate for the extruded material&#x27;s additional thickness</li></ul><ul id="54fb8400-b734-402b-89f3-5f66c5a20989" class="bulleted-list"><li><strong>EnableInfill </strong>(boolean) | If enabled, infill structure will be generated</li></ul><ul id="0e6f9d64-0581-4d3e-a240-6ba260812359" class="bulleted-list"><li><strong>InfillDensity </strong>(decimal) | Infill density set in values between 0-1 for 0-100%</li></ul><ul id="1f44dd00-12d7-487a-8379-613c1862f7cf" class="bulleted-list"><li><strong>InfillWidth</strong> (decimal) | Infill line thickness defined in mm</li></ul><ul id="946cc3fa-89c5-4eb5-8019-9f869fe0fb01" class="bulleted-list"><li><strong>InfillAngle</strong> (decimal) Infill rotation angle in degrees</li></ul><ul id="b0c599d2-fa3a-485e-b121-5e1985484b3e" class="bulleted-list"><li><strong>AlternateRotation </strong>(boolean) | If enabled, infill is rotated by 90 degrees in every alternate layer</li></ul><p id="0a26233f-d93e-45b2-a59e-9eb0f8f7e266" class=""><em>Outputs:</em></p><ul id="aa7fbb98-c20c-4541-b1fa-fdc83fd12ccf" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="8b30d0fc-d765-4d59-b6ec-4d1dc4fcd572"/><h3 id="7c968187-d76b-4b05-b1cd-a8683ffa6e27" class="">Multi Planar Contours</h3><p id="2991669f-dba9-4427-bad0-cc5e948e7403" class="">Slices the input solid geometry with multiple planes and returns the intersection as polylines. Takes as input two planes defined by an origin point and rotation around that point and the number  of total planes which are calculated as interpolation between the two input planes.</p><p id="c18dd643-e5e0-416f-9476-9264d8142eb7" class=""><em>Inputs:</em></p><ul id="3681ae5b-ca75-4d98-820c-fc6c89c63ae9" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="0c92e14b-5fc1-4b9d-8e1c-1e008cec1acc" class="bulleted-list"><li><strong>PlaneCount </strong>(int) | Total number of planes to be generated</li></ul><ul id="6ad808c3-1701-4908-a387-df9d9be82b6a" class="bulleted-list"><li><strong>WallThickness </strong>(decimal) | Wall thickness defined in mm</li></ul><ul id="0dbf2dd8-451f-40a6-aa2b-c3fcb3b88685" class="bulleted-list"><li><strong>RefPlaneAptX</strong> (decimal) | Origin point X coordinate for plane A in mm</li></ul><ul id="eeb98630-2b99-4d87-b27c-1b944efac257" class="bulleted-list"><li><strong>RefPlaneAptY</strong> (decimal) | Origin point Y coordinate for plane A in mm</li></ul><ul id="626fd6f7-0cb6-4a92-b6af-15de44e1c7db" class="bulleted-list"><li><strong>RefPlaneAptZ</strong> (decimal) | Origin point Z coordinate for plane A in mm</li></ul><ul id="5798c394-fcf1-4f9e-aead-9ff2aaeaa0c9" class="bulleted-list"><li><strong>RefPlaneArotX</strong> (decimal) | Plane A rotation in X-axis around origin point in degrees</li></ul><ul id="8f548935-bb32-4911-a388-2402d0fb6ad7" class="bulleted-list"><li><strong>RefPlaneArotY</strong> (decimal) | Plane A rotation in Y-axis around origin point in degrees</li></ul><ul id="896a4c69-56ae-4415-a649-b4bb3ee25e48" class="bulleted-list"><li><strong>RefPlaneBrotZ</strong> (decimal) | Plane A rotation in Z-axis around origin point in degrees</li></ul><ul id="6ae9e601-e20d-4d1d-804f-fc93cc1c05a7" class="bulleted-list"><li><strong>RefPlaneBptX</strong> (decimal) | Origin point X coordinate for plane B in mm</li></ul><ul id="e613dea5-71bd-4667-a55e-e603b7f0b35a" class="bulleted-list"><li><strong>RefPlaneBptY</strong> (decimal) | Origin point Y coordinate for plane B in mm</li></ul><ul id="46fcb098-a43a-410c-9211-69176423fb22" class="bulleted-list"><li><strong>RefPlaneBptZ</strong> (decimal) | Origin point Z coordinate for plane B in mm</li></ul><ul id="c8f0131c-36af-4a59-a758-dfabc17eef34" class="bulleted-list"><li><strong>RefPlaneBrotX</strong> (decimal) | Plane B rotation in X-axis around origin point in degrees</li></ul><ul id="1951658d-07ac-45ea-90da-bffd1a40569a" class="bulleted-list"><li><strong>RefPlaneBrotY</strong> (decimal) | Plane B rotation in Y-axis around origin point in degrees</li></ul><ul id="74ecb33f-3269-4e76-97e6-5db7a98430ff" class="bulleted-list"><li><strong>RefPlaneBrotZ</strong> (decimal) | Plane B rotation in Z-axis around origin point in degrees</li></ul><p id="e9f2c715-ce5a-458c-8608-c1b532e643df" class=""><em>Outputs:</em></p><ul id="fc7e153c-cf9d-44a2-8d1c-1ce7caf157bb" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="c566b784-c9c5-4976-99ce-5cdc0d867464"/><h3 id="8cbf64b4-a70a-4eea-bcf3-466fab1dce3a" class="">Non Planar Contours</h3><p id="7c84fae0-5297-450b-81e6-7b3c576a465e" class="">Slices the input solid geometry in a non planar manner. Two reference meshes are required as boundary slicing guides, with all the in-between slicing guides calculated as interpolation between the two input geometries.</p><p id="bd78d0fa-5b30-4ea2-808d-c0a6b78c0d48" class=""><em>Inputs:</em></p><ul id="58de8232-7bb8-4f8a-a712-28b872278b13" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="d8461896-2980-425e-a5e5-b3658e0cb7a5" class="bulleted-list"><li><strong>GuideA </strong>(Mesh) | First mesh to be used as a slicing guide to intersect with the input geometry</li></ul><ul id="eb044987-5eb6-4be0-838a-8e511e0b79ee" class="bulleted-list"><li><strong>GuideB </strong>(Mesh) | Second mesh to be used as a slicing guide</li></ul><ul id="77078c99-8e97-4335-8a1a-9d495912f438" class="bulleted-list"><li><strong>Count </strong>(integer) | Total number of meshes to be generated for slicing with the base geometry</li></ul><ul id="4c91771a-362c-48fd-8024-58e74501b017" class="bulleted-list"><li><strong>WallThickness </strong>(decimal) | Thickness of the sliced geometry defined in mm</li></ul><hr id="539b348f-8b7c-4e74-a34a-f22069a90dcc"/><hr id="3aac2592-aec4-45f3-861b-07b9a603abb8"/><h2 id="9c8e508c-c59b-4755-9b1c-555b6beddf1c" class="">TOOLPATH</h2><hr id="bd18deeb-cfe7-4754-8aca-42c7a9a54965"/><h3 id="c598a78d-538f-4286-984d-e747506dca93" class="">Toolpath Generator Filament</h3><p id="adbfc38f-9d6c-4de6-ab02-88376ae85bf5" class="">Generates a toolpath from the input polylines for a filament extruder.</p><p id="9e6206a0-11cd-4be0-915c-f21b618e0575" class=""><em>Inputs:</em></p><ul id="11335588-e2ae-4d39-b0c9-dbf1e8a4dc87" class="bulleted-list"><li><strong>Design </strong>(Polylines) | Input polylines to be used for toolpath generation</li></ul><ul id="c1f616e5-df50-428c-a1cb-0c028042a0ce" class="bulleted-list"><li><strong>Enable Axis Limits </strong>(boolean) | If enabled, the computation will check if the robot exceeds its axis limits. If it exceeds them, the toolpath generation will fail.</li></ul><ul id="14bb5e1f-d34b-4c11-ae30-2e73f54b5e21" class="bulleted-list"><li><strong>Enable Workspace Limits </strong>(boolean) | If enabled, the computation will check if the robot excedds its workspace limits. If it exceeds them, the toolpath generation will fail.</li></ul><ul id="3933da20-59b0-4808-ada6-94b230507514" class="bulleted-list"><li><strong>Material </strong>(selection) | The type of material to be used</li></ul><ul id="979d94de-4ddc-46b8-82cb-7fcf104e14b3" class="bulleted-list"><li><strong>Nozzle T </strong>(integer) | Nozzle T defined in Celsius degrees</li></ul><ul id="d7962a06-e0b1-4609-9059-38adc36d3021" class="bulleted-list"><li><strong>First Layer Nozzle T </strong>(integer) | Nozzle T for the first layer defined in Celsius degrees</li></ul><ul id="e5ba1491-afd3-43f9-b51f-fd259cd2aa49" class="bulleted-list"><li><strong>Bed T </strong>(integer) | Heated bed temperature defined in Celsius degrees</li></ul><ul id="a52fd3d5-d8c3-42d4-911e-e3185b2df928" class="bulleted-list"><li><strong>First Layer Bed T </strong>(integer) | Heated bed temperature for the first layer defined in Celsius degrees</li></ul><ul id="f6ee38ca-dc11-44f7-9e16-f0045eeac6e2" class="bulleted-list"><li><strong>Cell T </strong>(integer) | Heated enclosure temperature defined in Celsius degrees</li></ul><ul id="ff0d0aaf-1b5b-4bfa-8b47-329efff50039" class="bulleted-list"><li><strong>First Layer Cell T </strong>(integer) | Heated enclosure temperature for the first layer defined in Celsius degrees</li></ul><ul id="ada1f05b-c2e9-40e8-9031-df25489c5eb9" class="bulleted-list"><li><strong>Max Extrusion Rate </strong>(integer) | Maximum extrusion rate of the extruder defined in steps/s</li></ul><ul id="0a2df610-da81-48d1-9485-1f7223fbf727" class="bulleted-list"><li><strong>First Layer Max Extrusion Rate </strong>(integer) | Maximum extrusion rate for the first layer defined in steps/s</li></ul><ul id="88d63bce-44bb-4ca4-8668-c75ed9923a86" class="bulleted-list"><li><strong>Outer Wall Speed </strong>(decimal) | Robot speed for the outer wall linetype polylines defined in mm/s</li></ul><ul id="d98098b2-7ec6-401e-83b2-bd415a164308" class="bulleted-list"><li><strong>Inner Wall Speed </strong>(decimal) | Robot speed for the inner wall linetype polylines defined in mm/s</li></ul><ul id="21897892-8722-4ac9-9209-906096fe93c2" class="bulleted-list"><li><strong>Infill Speed </strong>(decimal) | Robot speed for the infill linetype polylines defined in mm/s</li></ul><ul id="2ead8e19-af28-4624-9793-d4e5879f023f" class="bulleted-list"><li><strong>Skin Speed </strong>(decimal) | Robot speed for the skin linetype polylines defined in mm/s</li></ul><ul id="4ed9635d-61ee-4f4c-a527-ff72819d508b" class="bulleted-list"><li><strong>Support Speed </strong>(decimal) | Robot speed for the support linetype polylines defined in mm/s</li></ul><ul id="15340fd1-dcbe-468b-887e-f1a82d82f14b" class="bulleted-list"><li><strong>Scan Distance </strong>(decimal) | If scan distance is bigger than zero, then before breaking from a closed polyline, the robot will continue moving along the polyline path for the speficied scan distance and with the specified scan speed so that the nozzle gets clean from any residual material. Defined in mm.</li></ul><ul id="b8173ed8-5ba2-4243-8999-ebc9523b1bda" class="bulleted-list"><li><strong>Scan Speed </strong>(decimal) | Robot speed while scanning the geometry defined in mm/s. </li></ul><ul id="70236cc3-3032-4057-bbb6-84e98299d1d0" class="bulleted-list"><li><strong>Jump Speed </strong>(decimal) | The speed that the robot will jump when breaking from a polyline in order to travel to the next polyline defined in mm/s.</li></ul><ul id="6c2981bc-2fd1-4ba8-95d8-94ffa8eb88a1" class="bulleted-list"><li><strong>Wait Before Extrusion </strong>(decimal) | The delay in seconds between switching on extrusion and moving along the path of a polyline to account for the delay between sending the instruction to the extruder to switch the extrusion on and the material to come out of the nozzle.</li></ul><ul id="9fb5ae1a-02c3-48b6-a836-a7da5a0028de" class="bulleted-list"><li><strong>Wait After Open Polyline </strong>(decimal) | The delay in seconds between switching off extrusion and breaking from the open polyline at the end of its path.</li></ul><ul id="9815b7f9-3e94-4fcb-b004-ad9d3b4ab962" class="bulleted-list"><li><strong>Vertical Offset Before Start </strong>(decimal) | The vertical distance in mm from the first point of a new polyline after a travel move.</li></ul><ul id="a61bc4ce-2c04-41de-adc0-5f04143edabd" class="bulleted-list"><li><strong>Jump Distance </strong>(decimal) | The vertical jump distance in mm at the end of a polyline before a travel move.</li></ul><ul id="f4cbfa92-3891-47c4-947d-8ac16a10903e" class="bulleted-list"><li><strong>Line Continuity Limit </strong>(decimal) | The maximum distance between the last point of a polyline and the first point of the next polyline in order to be considered continuous path without adding a travel move between them. Extrusion will remain on if the two points are within the continuity limit.</li></ul><ul id="793b3176-220c-4fba-b320-b5de1bdb9b03" class="bulleted-list"><li><strong>Cooler Speed </strong>(selection) | Defines the cooling speed</li></ul><ul id="00dfc405-bf16-4237-b841-51fc7eb43f86" class="bulleted-list"><li><strong>Enable Minimum Layer Time </strong>(boolean) | If enabled, the robot and extrusion speed will be adjusted to ensure that each layer is printed no sooner than the minimum specified layer time.</li></ul><ul id="e6fe05e9-114f-4b94-ab4b-87ed7b682350" class="bulleted-list"><li><strong>Minimum Layer Time </strong>(decimal) | Minimum layer time defined in seconds.</li></ul><p id="56cfb34a-ef4f-4b07-bdd5-19039df685a4" class=""><em>Outputs:</em></p><ul id="da6c98e5-b7f6-40a4-a368-e0cf0923757a" class="bulleted-list"><li><strong>Toolpath </strong>(file) | The generated toolpath that can be streamed or downloaded.</li></ul><ul id="4e790f72-733d-44c7-8144-6909fe77b3b4" class="bulleted-list"><li><strong>Duration </strong>(time) | The estimated printing duration of the toolpath defined in hours, minutes and seconds.</li></ul><ul id="d1fc5aa4-be49-44c4-a437-f1663a25914c" class="bulleted-list"><li><strong>Weight </strong>(decimal) | The estimated weight of the printed object based on the generated toolpath, defined in kg.</li></ul><hr id="e5e82585-28cf-43ad-8266-a604fc134d53"/><h3 id="db2a0959-7322-4a00-9133-58ac9947eba4" class="">Toolpath Generator Pellet</h3><p id="e11c0823-23ee-4049-9ab3-3e917b78d712" class="">Generates a toolpath from the input polylines for a pellet extruder.</p><p id="a1e48097-a1c1-4acc-8eee-8dcc1dd26d4b" class=""><em>Inputs:</em></p><ul id="beaa334a-b852-4e0c-8356-a449603f03fc" class="bulleted-list"><li><strong>Design </strong>(Polylines) | Input polylines to be used for toolpath generation</li></ul><ul id="26173d67-0fa6-48db-8092-b9927da265a6" class="bulleted-list"><li><strong>Enable Axis Limits </strong>(boolean) | If enabled, the computation will check if the robot exceeds its axis limits. If it exceeds them, the toolpath generation will fail.</li></ul><ul id="b15da35d-225d-4cba-994c-a39b68468653" class="bulleted-list"><li><strong>Enable Workspace Limits </strong>(boolean) | If enabled, the computation will check if the robot excedds its workspace limits. If it exceeds them, the toolpath generation will fail.</li></ul><ul id="cd41bc90-8871-49e6-9f97-b9b952dd756c" class="bulleted-list"><li><strong>Material </strong>(selection) | The type of material to be used</li></ul><ul id="4c5ace81-1bea-44ea-9432-de0f7f55c051" class="bulleted-list"><li><strong>Bed T </strong>(integer) | Heated bed temperature defined in Celsius degrees</li></ul><ul id="10f9963e-88a3-433a-8474-01cc7b788474" class="bulleted-list"><li><strong>First Layer Bed T </strong>(integer) | Heated bed temperature for the first layer defined in Celsius degrees</li></ul><ul id="a0f04bf5-bed5-4f84-a35d-6f277809121e" class="bulleted-list"><li><strong>Cell Temperature </strong>(integer) | Heated enclosure temperature defined in Celsius degrees</li></ul><ul id="1d67aa45-fe2b-40a2-8349-6c04a7aae674" class="bulleted-list"><li><strong>First Layer Cell T </strong>(integer) | Heated enclosure temperature for the first layer defined in Celsius degrees</li></ul><ul id="740b84af-ae20-4edb-958a-c27a1241f8b7" class="bulleted-list"><li><strong>Pellet T Zone 1 </strong>(integer) | Temperature of the first zone of the pellet extruder defined in Celsius degrees.</li></ul><ul id="b3b65710-ddea-4a45-9a8e-c42d6d43cee8" class="bulleted-list"><li><strong>First Layer Pellet T Zone 1 </strong>(integer) | Temperature of the first zone of the pellet extruder on the first layer defined in Celsius degrees.</li></ul><ul id="3d56a188-e423-43ca-a44b-0d8c02b886aa" class="bulleted-list"><li><strong>Pellet T Zone 2 </strong>(integer) | Temperature of the second zone of the pellet extruder defined in Celsius degrees.</li></ul><ul id="b3caf57a-bbca-4480-8891-4e64df5b4a08" class="bulleted-list"><li><strong>First Layer Pellet T Zone 2 </strong>(integer) | Temperature of the second zone of the pellet extruder on the first layer defined in Celsius degrees.</li></ul><ul id="d5e082ef-db21-4b69-bc3e-ab28e7ee5854" class="bulleted-list"><li><strong>Pellet T Zone 3 </strong>(integer) | Temperature of the third zone of the pellet extruder defined in Celsius degrees.</li></ul><ul id="9536a5ab-497e-4213-a28a-dd491ca10c9c" class="bulleted-list"><li><strong>First Layer Pellet T Zone 3 </strong>(integer) | Temperature of the third zone of the pellet extruder on the first layer defined in Celsius degrees.</li></ul><ul id="c59eb14f-c6de-4135-ba0b-b1ffadf3078a" class="bulleted-list"><li><strong>Pellet Screw Speed </strong>(integer) | Pellet screw speed that controls the extrusion rate defined in rpm.</li></ul><ul id="2023c9cd-e04f-4cbb-8b9f-e9f4e7b40235" class="bulleted-list"><li><strong>First Layer Pellet Screw Speed </strong>(integer) | Pellet screw speed on the first layer defined in rpm.</li></ul><ul id="4514b066-cee2-4e61-99dd-d8e124dca295" class="bulleted-list"><li><strong>Outer Wall Speed </strong>(decimal) | Robot speed for the outer wall linetype polylines defined in mm/s</li></ul><ul id="0f7740a8-8208-4c16-8f6c-6a441f660001" class="bulleted-list"><li><strong>Inner Wall Speed </strong>(decimal) | Robot speed for the inner wall linetype polylines defined in mm/s</li></ul><ul id="3c101599-1ab9-4c5f-b935-56bb2fb09c94" class="bulleted-list"><li><strong>Infill Speed </strong>(decimal) | Robot speed for the infill linetype polylines defined in mm/s</li></ul><ul id="4ee36e98-40cd-4dc2-9b9c-3f5beeb253d8" class="bulleted-list"><li><strong>Skin Speed </strong>(decimal) | Robot speed for the skin linetype polylines defined in mm/s</li></ul><ul id="aef3dbf0-1973-4a6b-87c0-36cb59ddb568" class="bulleted-list"><li><strong>Support Speed </strong>(decimal) | Robot speed for the support linetype polylines defined in mm/s</li></ul><ul id="b8bd5d88-cc84-40a1-9254-ca2ebbbbae73" class="bulleted-list"><li><strong>Scan Distance </strong>(decimal) | If scan distance is bigger than zero, then before breaking from a closed polyline, the robot will continue moving along the polyline path for the speficied scan distance and with the specified scan speed so that the nozzle gets clean from any residual material. Defined in mm.</li></ul><ul id="b1778aae-ba23-4547-b837-37158f65aa8c" class="bulleted-list"><li><strong>Scan Speed </strong>(decimal) | Robot speed while scanning the geometry defined in mm/s. </li></ul><ul id="eab7bfed-bb9e-46a9-a85b-011c34a7afcf" class="bulleted-list"><li><strong>Jump Speed </strong>(decimal) | The speed that the robot will jump when breaking from a polyline in order to travel to the next polyline defined in mm/s.</li></ul><ul id="18dcd46d-9af0-4256-9e67-810d4e7875d3" class="bulleted-list"><li><strong>Wait Before Extrusion </strong>(decimal) | The delay in seconds between switching on extrusion and moving along the path of a polyline to account for the delay between sending the instruction to the extruder to switch the extrusion on and the material to come out of the nozzle.</li></ul><ul id="17a26e25-3a09-45d1-b49c-697dcc1dbfa1" class="bulleted-list"><li><strong>Wait After Open Polyline </strong>(decimal) | The delay in seconds between switching off extrusion and breaking from the open polyline at the end of its path.</li></ul><ul id="65a84b5b-a093-447c-87d4-936ccad28ff4" class="bulleted-list"><li><strong>Vertical Offset Before Start </strong>(decimal) | The vertical distance in mm from the first point of a new polyline after a travel move.</li></ul><ul id="43882376-3dac-4608-bd3b-f3099a9bbeb8" class="bulleted-list"><li><strong>Jump Distance </strong>(decimal) | The vertical jump distance in mm at the end of a polyline before a travel move.</li></ul><ul id="482699e9-aa4c-4812-a26f-a544e077dd80" class="bulleted-list"><li><strong>Line Continuity Limit </strong>(decimal) | The maximum distance between the last point of a polyline and the first point of the next polyline in order to be considered continuous path without adding a travel move between them. Extrusion will remain on if the two points are within the continuity limit.</li></ul><ul id="83d2cf96-254a-4622-bd3c-f7c1759c5ec2" class="bulleted-list"><li><strong>Cooler Speed </strong>(selection) | Defines the cooling speed</li></ul><ul id="b0234ad2-a40c-459c-a724-892824c57bf1" class="bulleted-list"><li><strong>Enable Minimum Layer Time </strong>(boolean) | If enabled, the robot and extrusion speed will be adjusted to ensure that each layer is printed no sooner than the minimum specified layer time.</li></ul><ul id="4a040e08-e2fa-4006-96f4-8a51ad214bb5" class="bulleted-list"><li><strong>Minimum Layer Time </strong>(decimal) | Minimum layer time defined in seconds.</li></ul><p id="106254dd-7e15-420c-a0f0-f9ed6a093d6d" class=""><em>Outputs:</em></p><ul id="04ba6cf2-1409-4e23-a751-671e7b9f86a8" class="bulleted-list"><li><strong>Toolpath </strong>(file) | The generated toolpath that can be streamed or downloaded.</li></ul><ul id="3e1ac814-1c83-4584-977f-93eab0c7d3e0" class="bulleted-list"><li><strong>Duration </strong>(time) | The estimated printing duration of the toolpath defined in hours, minutes and seconds.</li></ul><ul id="16fca8f7-d7ff-47f5-9503-a07654cc315b" class="bulleted-list"><li><strong>Weight </strong>(decimal) | The estimated weight of the printed object based on the generated toolpath, defined in kg.</li></ul><hr id="5b9a0da2-0a0b-4a2c-8fde-fa4ddebd3e01"/><hr id="a728cbe6-f7de-48d5-9474-31ade59cee56"/><h2 id="99aeaf9e-4c5e-4e6c-bc1a-703720e2cdad" class="">DATA OPERATIONS</h2><hr id="673e1d06-c381-44a1-8fa4-c27cd52ac545"/><h3 id="e8b9cb1b-d3c4-4b85-b87d-75a3288889ae" class="">Combine Data</h3><p id="e8d32775-0887-4102-a99a-9863d2995d07" class="">Combines two polyline outputs into one. DataA is added first.</p><p id="cf03f8fe-114c-438e-acf1-a1ecd2a5ecc8" class="">Example:<div class="indented"><p id="419d1622-c950-4009-9453-d29f21456d1c" class="">Data A: [pl1, pl2, pl3],  Data B: [pl4, pl5, pl6]</p><p id="aea14dba-864f-47fb-b6f8-c650f6b8ead2" class="">Result: [pl1, pl2, pl3, pl4, pl5, pl6]</p></div></p><p id="c701b23d-3113-49ae-86bd-46151d1a8085" class=""><em>Inputs:</em></p><ul id="204aab6a-2da8-4bdb-a5d4-981a92b8c976" class="bulleted-list"><li><strong>DataA</strong> (Polylines)</li></ul><ul id="3ead5c6b-6e2b-468d-8276-b92e00e85c5f" class="bulleted-list"><li><strong>DataB</strong> (Polylines)</li></ul><p id="c4e63429-a5a0-4708-93e9-9227ee47069d" class=""><em>Outputs:</em></p><ul id="58e90905-f93d-459b-a2ae-dec8eabc55db" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="2c006c08-1810-439d-a23b-ce29faab957d"/><h3 id="3b9f297a-e647-4cf3-a8c7-ebff350997d4" class="">Reverse Data</h3><p id="4394bac4-12f0-4146-b170-bf54cb182e48" class="">Reverses the order of the elements in the input data.</p><p id="757c799c-3415-41c4-8134-c9ef98db8a18" class="">Example:<div class="indented"><p id="8e08eabe-b83e-4bcd-a6da-9dbc4dce8460" class="">Input data: [pl1, pl2, pl3, pl4, pl5, pl6]</p><p id="3936ca50-907c-4f25-a3fb-2889f10a70d9" class="">Result: [pl6, pl5, pl4, pl3, pl2, pl1]</p></div></p><p id="4134bdcc-3600-4e46-92fb-e8454879a6af" class=""><em>Inputs:</em></p><ul id="0feba228-816d-4247-b954-792bbe70754a" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><p id="662398c7-cf2c-4d56-87c1-ef2a230c8c60" class=""><em>Outputs:</em></p><ul id="e4626a10-9f74-4717-928b-a38325773e21" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="7625a6d9-dae1-442c-94a5-d0a1af3bd685"/><h3 id="c9ce55bb-1ae3-4c6d-b645-f344d7d90571" class="">Set Layer</h3><p id="aaf3a6bc-089a-4ac4-85cf-e2418234cfe2" class="">Sets the layer information for the input polylines.</p><p id="a852ca98-0bed-4483-909a-3cb537a60756" class=""><em>Inputs:</em></p><ul id="1ff48e3a-fdc0-4ff3-b32d-c67de421f6ad" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="825d51d5-ac9b-4a19-b706-07e016fc8107" class="bulleted-list"><li><strong>Layer </strong>(integer)</li></ul><p id="1c2885f3-11e3-406d-ba77-885694812a3a" class=""><em>Outputs:</em></p><ul id="fa890b5f-4374-44c6-88e2-4cb1c8191313" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="f026cc36-66c9-4c33-8ff9-731d5ab643b1"/><h3 id="30465a98-5f03-44c0-88ba-89a401ad235a" class="">Set Layer Height</h3><p id="9772085b-115e-4f72-9336-9063efc76d0c" class="">Sets the layer height information for all the points of the input polylines in mm.</p><p id="e0f0710f-a588-4a16-95ad-965f079961fd" class=""><em>Inputs:</em></p><ul id="896fea39-84de-4653-907e-5fdd7f7a7e5a" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="c8284fe7-6b74-4a04-be4e-7d1691a8552d" class="bulleted-list"><li><strong>LayerHeight </strong>(decimal)</li></ul><p id="6a792c98-01bd-4bcd-b976-acac6f84bd45" class=""><em>Outputs:</em></p><ul id="5efbeb0d-3a25-4338-83f2-e518b20efd40" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="c7713f28-c620-4712-b246-84599d804bd1"/><h3 id="5ce10492-faac-4f44-8848-c3ddbf21ae62" class="">Set Line Thickness</h3><p id="e957393a-e78e-4890-962c-dba8ee62b40e" class="">Sets the line thickness information for all the points of the input polylines in mm.</p><p id="3f0126c7-5239-4878-8327-8e5908ed301a" class=""><em>Inputs:</em></p><ul id="264161e6-bb8b-4a3c-aca1-d87102f49af3" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="a64c4d74-050c-4af1-a6e0-b6d7bf1c7a90" class="bulleted-list"><li><strong>LineThickness </strong>(decimal)</li></ul><p id="b7dabbc8-fc40-42a3-8cad-b45fdd9d8a56" class=""><em>Outputs:</em></p><ul id="77cc258a-c690-4f64-8646-654e0064462d" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="e63a2e11-a3a3-4401-833a-1adae083a6fd"/><h3 id="befa9547-8658-4be6-bad5-932ae2160db9" class="">Set Line Type</h3><p id="24e0a1bb-f111-497f-9490-a0acdfd48ab3" class="">Sets the line type information for the input polylines.</p><p id="23c24a11-b048-47a6-9e22-758387641ef0" class=""><em>Inputs:</em></p><ul id="b993e645-605a-4572-af0b-02bb81ad37c8" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="6b14fde1-c61a-4511-9c36-d274d30b4894" class="bulleted-list"><li><strong>LineType </strong>(selection)</li></ul><p id="8bb55063-fc62-445d-95cf-0121d50b06c2" class=""><em>Outputs:</em></p><ul id="cbb09c1e-18fc-4cb8-9442-e73752693096" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="1834cb04-db04-45a0-92a2-11e6e3203c68"/><h3 id="06c41b3f-6955-4264-8f4f-c8f72798aa7e" class="">Set Orientation</h3><p id="f654c4f9-7812-4282-9b38-385eb1f001ce" class="">Sets the tool a, b,c rotation values from the home position for all the points of the input polylines in degrees.</p><p id="c8bc70a7-ce4b-459d-9d16-957f2b985b20" class=""><em>Inputs:</em></p><ul id="88e76ccb-ffb5-437f-8479-6ef3656cd9fd" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="c55ec5e8-ce66-4155-83f8-2631c9d6e9bc" class="bulleted-list"><li><strong>LineThickness </strong>(decimal)</li></ul><p id="92ad2a03-0c09-4fff-8fcc-e5d6d7c301ec" class=""><em>Outputs:</em></p><ul id="7b7fe662-b9f7-4558-b326-519d6dea8c91" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="a9fe8f04-2173-4b8a-a5ac-5bed43cfa106"/><h3 id="808d9de9-9467-450a-af1b-625421cc9315" class="">Set Speed Multiplier</h3><p id="83f0e1ed-8c90-45a5-bfaf-97b62238f3df" class="">Sets the speed multiplier for all the points of the input polylines. Default value is 1. A smaller speed multiplier will result in slower extrusion and robot speed, while a higher value will result in faster extrusion and robot speed.</p><p id="7668a8a7-72b2-4a24-bf0f-102b0be9878d" class=""><em>Inputs:</em></p><ul id="26b14381-f764-4fe1-8359-16e2ac93e174" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="5677a17e-443d-437e-b287-e7a6f1c63a0b" class="bulleted-list"><li><strong>SpeedMultiplier </strong>(decimal)</li></ul><p id="c149fc6a-5c5f-4e7a-8e91-5641f15e5c96" class=""><em>Outputs:</em></p><ul id="27c875b0-c51d-4c8e-8c83-91892fc7dfda" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="1b1f2777-73ac-4997-9ebb-a8dfd6a5f09a"/><h3 id="6e14ad0f-9eee-4537-bc53-ad99bb049b08" class="">WeaveData</h3><p id="dfbfe981-4e20-48b6-aa6f-6939fd11d38b" class="">Weaves the data of two lists of polylines with the same number of elements.</p><p id="8c12cdc4-8858-408c-b04a-5f3cc1fbabae" class="">Example:<div class="indented"><p id="541c40d9-559e-44c9-9f19-7d784fa82b19" class="">Input lists: [pl1, pl2, pl3], [pl4, pl5, pl6]</p><p id="a799e650-45d9-41f4-a6c9-43b2cef09beb" class="">Result: [pl1, pl4, pl2, pl5, pl3, pl6]</p></div></p><p id="d8f651dc-ca4e-42b5-ac25-080ea2c91a72" class=""><em>Inputs:</em></p><ul id="dd892114-990e-438f-b065-ce489d2b8c6b" class="bulleted-list"><li><strong>DataA </strong>(Polylines)</li></ul><ul id="c8e2ea2c-1fad-484c-a559-0abcbe7e3fdd" class="bulleted-list"><li><strong>DataB </strong>(Polylines)</li></ul><p id="c25f6a50-f129-47ce-9c62-752e276842d2" class=""><em>Outputs:</em></p><ul id="9cd9be56-ca24-4e22-9945-016eb18092c0" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="8b1e92ad-8277-4005-87d9-3f6b1255305b"/><hr id="5b078587-3601-42f1-9c1e-729fbc1a80f9"/><h2 id="6a21a5c5-fa95-4214-914c-5f0479a16ed9" class="">FILTERS</h2><hr id="17bb2594-0319-4536-8c27-a56df3e5defb"/><h3 id="c2060c9f-5c5e-4590-b095-256f2afda050" class="">Filter By Analysis Data</h3><p id="025f55e0-3a12-4d06-89ce-eb219fb3c253" class="">Filters the input data based on the range of the specified analysis data.</p><p id="0783b25f-47a1-484f-91d3-24f678af9717" class=""><em>Inputs:</em><div class="indented"><ul id="b5ebe9d5-0f38-49c0-90b5-dfd52bcd174f" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="303d015b-8b4b-4d33-bafb-ca47b9403887" class="bulleted-list"><li><strong>Data </strong>(decimal list) | Analysis data of the input polylines</li></ul><ul id="0b1b25e0-4290-4dc4-a750-1c565e8b6abf" class="bulleted-list"><li><strong>MinValue </strong>(decimal) | Lower limit to filter from the analysis data</li></ul><ul id="7e420c7e-5723-402e-93ca-bf80734d9e60" class="bulleted-list"><li><strong>MaxValue </strong>(decimal) | Upper limit to filter from the analysis data</li></ul></div></p><hr id="35ab5b70-247b-412e-bff3-00993cbac8c4"/><h3 id="1039ecab-2558-403b-9fd7-137274bc6f55" class="">Filter By Average Height</h3><p id="680ff85a-4943-417b-9dbe-4170c43e86a7" class="">Filters the input polylines based on the specified range of polyline average height. A maxHeight value of -1 returns the maximum upper limit available.</p><p id="c819d5a3-681a-47d0-a22c-c4b9ed986cb6" class=""><em>Inputs:</em></p><ul id="be8ded3b-4050-454c-93f8-92401fa0d05c" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><ul id="69c1385d-2dd4-4969-ba50-da477ff086b2" class="bulleted-list"><li><strong>MinHeight</strong> (decimal)</li></ul><ul id="d4f47d60-e6cf-49fd-9289-9860d115d03a" class="bulleted-list"><li><strong>MaxHeight</strong> (decimal)</li></ul><p id="2aa59a7b-9332-4d29-a572-4bd5fc92f31f" class=""><em>Outputs:</em></p><ul id="939b15b6-7a02-4f82-8ab5-cfda2d37822b" class="bulleted-list"><li><strong>Out</strong> (Polylines) | The polylines within the specified range</li></ul><ul id="61c10dde-a0a9-4c36-a448-3b8cafd09e17" class="bulleted-list"><li><strong>OutInverse </strong>(Polylines) | The polylines outside the specified range</li></ul><hr id="f2de925a-50ee-428d-a23a-1a899b5ad01f"/><h3 id="6c8d60a3-9cbc-4b63-a15d-b3cb7a2f8965" class="">Filter By Index Range</h3><p id="a202c7f2-a5d7-4a5a-b338-92eb925c0f48" class="">Filters the input polylines based on the specified range of indices. An endIndex value of -1 returns the biggest index available. </p><p id="cde9ebf6-56fa-42b4-a20b-f0ef0e4261cb" class=""><em>Inputs:</em></p><ul id="68f0f7ae-4772-443d-80af-d40da544d85c" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><ul id="1031d5dd-3db8-4797-bdf0-5af01020bede" class="bulleted-list"><li><strong>StartIndex</strong> (integer)</li></ul><ul id="2f43183d-8996-4836-9d76-6cb73aceebb1" class="bulleted-list"><li><strong>EndIndex</strong> (integer)</li></ul><p id="34889595-41c5-4565-b451-bc686b9a8c71" class=""><em>Outputs:</em></p><ul id="253df242-72ad-42ed-be46-2063904c81e0" class="bulleted-list"><li><strong>Out</strong> (Polylines) | The polylines within the specified range</li></ul><ul id="5d8265a2-5d95-4f68-94c5-8b170f926ac2" class="bulleted-list"><li><strong>OutInverse </strong>(Polylines) | The polylines outside the specified range</li></ul><hr id="f9367332-922f-475a-8384-3b0d055cf075"/><h3 id="6927d4d7-a12c-469e-857f-2628c6d65a3c" class="">Filter By Layer</h3><p id="11661fec-e0c5-4eee-a5cc-06acdfc93083" class="">Filters the input polylines based on the specified range of layers. Layer data needs to be present in the input polylines in order for the operator to work. An endLayer value of -1 will returns the biggest layer available.</p><p id="e608ecc7-efbe-41ea-9389-a1c271022a1c" class=""><em>Inputs:</em></p><ul id="3c94ddc7-18f0-4b06-921a-671b46464af6" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><ul id="6744d76e-7ea6-4a7a-ab06-2f1382493bf1" class="bulleted-list"><li><strong>StartLayer</strong> (integer)</li></ul><ul id="dc2fa6df-2410-445c-8736-dd8949f74d6a" class="bulleted-list"><li><strong>EndLayer</strong> (integer)</li></ul><p id="38090540-434b-495b-86c4-dd0e072af279" class=""><em>Outputs:</em></p><ul id="bc90dc3b-0ee7-4a9d-bd7d-1cbb84cf0664" class="bulleted-list"><li><strong>Out</strong> (Polylines) | The polylines within the specified range</li></ul><ul id="114d1fe5-e559-4e7b-92cc-91d9fbabf307" class="bulleted-list"><li><strong>OutInverse </strong>(Polylines) | The polylines outside the specified range</li></ul><hr id="cb20dd5d-9a9e-4649-bf29-4e296d8dd178"/><h3 id="09f0125e-84aa-46b3-ba40-9fe2fba662dc" class="">Filter By Layer Height</h3><p id="e24d4c4a-b69f-4be1-8224-0ccaa2646ca7" class="">Filters the input polylines based on the specified range of layer height. Operator will only work if layer height information is stored in the input data.</p><p id="b7fe3d79-461a-4ddc-a271-b5e17701244e" class=""><em>Inputs:</em></p><ul id="162a200b-c786-48ca-a3f5-fc9f0804cf4a" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><ul id="4c4d4748-450a-48e2-9baa-172dea1384e6" class="bulleted-list"><li><strong>MinValue</strong> (decimal)</li></ul><ul id="1d6ac3f4-93be-46de-a15a-08defde7436e" class="bulleted-list"><li><strong>MaxValue</strong> (decimal)</li></ul><p id="3c4ea83d-2c45-4454-8b7b-0c772724ad4f" class=""><em>Outputs:</em></p><ul id="f95304cc-9f5b-4470-a055-84be955654ac" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="3169289f-81f7-47eb-bbc1-adf6515fc35e"/><h3 id="4772d3ac-383e-4311-9bb7-7bfcac3b085a" class="">Filter By Length</h3><p id="df415e96-f243-4150-81ca-022cca9faade" class="">Filters  the input polylines based on the specified range of polyline length.</p><p id="c2b96df4-ff94-4bdd-ae59-3cc76d264223" class=""><em>Inputs:</em></p><ul id="97c49817-5c49-4966-8e6a-a0d8940641f9" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><ul id="75d5a485-6dbf-45c8-98e5-0035acdb7307" class="bulleted-list"><li><strong>MinLength</strong> (decimal)</li></ul><ul id="37111076-98c8-46f2-96f0-73079f971eed" class="bulleted-list"><li><strong>MaxLength</strong> (decimal)</li></ul><p id="b6813865-d959-464a-9bb1-334f42583266" class=""><em>Outputs:</em></p><ul id="10d38af4-eb47-49f8-9b15-e4373547c49b" class="bulleted-list"><li><strong>Out</strong> (Polylines) | The polylines within the specified range</li></ul><ul id="751dbd88-e18b-4812-aa29-b49ff76cc56d" class="bulleted-list"><li><strong>OutInverse </strong>(Polylines) | The polylines outside the specified range</li></ul><hr id="a0461175-4042-4944-ba29-82d568751f8a"/><h3 id="9c996271-9dd7-4421-b9fb-0e508418027b" class="">Filter By Linetype</h3><p id="fba58e11-6707-4294-8a5c-bf46696c6f55" class="">Separates the input polylines into different streams based on their linetype information.</p><p id="87880e55-662e-4059-b0af-d847b35be898" class=""><em>Inputs:</em></p><ul id="a055582f-7fc1-44d6-8767-8fcd279d78f9" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><p id="9d1af1ca-4158-4b8d-8de9-b679f7f666d9" class=""><em>Outputs:</em></p><ul id="2f67586e-762b-4443-a357-5f3a68fb55ab" class="bulleted-list"><li><strong>OuterWall</strong> (Polylines)</li></ul><ul id="6db45dec-7f68-4eaa-af6d-8b6659829d68" class="bulleted-list"><li><strong>InnerWall</strong> (Polylines)</li></ul><ul id="46acbfcc-db93-4961-967a-21f2e6620258" class="bulleted-list"><li><strong>Infill</strong> (Polylines)</li></ul><ul id="fc9b50ec-17a2-4438-8c8a-27cced123dcc" class="bulleted-list"><li><strong>Support</strong> (Polylines)</li></ul><ul id="9274d266-9f9d-47a7-af03-db9a38918a43" class="bulleted-list"><li><strong>Skin</strong> (Polylines)</li></ul><hr id="c11ab7d3-11eb-4217-8a5d-f017bca37930"/><h3 id="cf64829c-e332-456f-b28f-7563d02bb00c" class="">Filter Closed Polylines</h3><p id="9f736e18-04c9-45e9-a6fd-f39b578e93fc" class="">Separates the input polylines into two streams based on the open/closed polyline condition.</p><p id="5fe7a3e4-7c47-4620-8862-673547bd30fd" class=""><em>Inputs:</em></p><ul id="147e4c47-93d9-4d10-a2b6-453e2c53d7a9" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><p id="eff7284a-bfa8-4f11-9ab8-71c6d2b157b0" class=""><em>Outputs:</em></p><ul id="f47fbaec-9b74-427b-b8fb-b986e63338cb" class="bulleted-list"><li><strong>OutClosed</strong> (Polylines)</li></ul><ul id="fdee4050-08d7-4cc2-a865-ae46cb6342f6" class="bulleted-list"><li><strong>OutOpen</strong> (Polylines)</li></ul><hr id="1c84f09d-992c-4a52-8abf-f21262dadc45"/><h3 id="2bc6df48-49bd-4744-9163-462993ab1fa1" class="">Filter Internal Polylines</h3><p id="a1ee8f0a-2335-4307-88d8-a3cee7bbd3ff" class="">Separates the input polylines into two streams based on whether they are internal/external on the layer.</p><p id="3b500e29-6e09-4a60-afb3-1399ff04f2b5" class=""><em>Inputs:</em></p><ul id="3c5e820e-b2e8-40c1-a4fc-d9b990f901a5" class="bulleted-list"><li><strong>In</strong> (Polylines)</li></ul><p id="534303f7-02b0-4c30-8569-878d51e49a1a" class=""><em>Outputs:</em></p><ul id="d54e6735-98c3-40f2-bc44-9b17e8dea5d5" class="bulleted-list"><li><strong>OutInternal</strong> (Polylines)</li></ul><ul id="02bdbda2-4a9f-4c72-9278-5431f30d2029" class="bulleted-list"><li><strong>OutExternal</strong> (Polylines)</li></ul><hr id="832c60dc-d814-4055-b80d-cede47b0e4e4"/><h3 id="7142ab3e-c00f-426d-934c-7e4bb7d022e0" class="">Filter Difference</h3><p id="352e0311-7f4c-4b25-b3ad-cc57a131c4e8" class="">Takes a list of polylines and a sublist and removes the sublist&#x27;s polylines from the list. </p><p id="06087373-1524-4a03-8de5-9bf041e35f87" class="">Example: List [ a, b, c, d, e ], Sublist [ b, d ] ⇒ Out [ a, c, e ]</p><p id="2962c375-35d8-4295-a309-5e1acf9d2224" class=""><em>Inputs:</em></p><ul id="183e9309-049b-4b44-870e-8dd8365ab4cf" class="bulleted-list"><li><strong>List </strong>(polylines) | Base list of polylines</li></ul><ul id="b09c3438-ffd4-45bf-95c6-2d07968c10f7" class="bulleted-list"><li><strong>Sublist </strong>(polylines) | List of polylines to be subtracted from the base list</li></ul><p id="50fc1cf8-8001-4c1c-b77b-9db753851eca" class=""><em>Outputs:</em></p><ul id="314d8faf-ccd6-4e73-aff1-16186d99225a" class="bulleted-list"><li><strong>Out </strong>(polylines)</li></ul><hr id="3b30cece-b03b-4228-a97d-235b8a5a7fef"/><hr id="bb6730df-8daf-4963-9b10-7a0f224585f7"/><h2 id="8e5deb7f-8649-4d1f-878b-cbb4ffc72a35" class="">GEOMETRY</h2><hr id="31913a95-3b5d-4294-adac-83506aa23d35"/><h3 id="c6031540-8c9d-4793-9c36-0935d2a2fe9c" class="">Align Seams</h3><p id="3b4bd5ec-252c-43eb-b841-d674d52392b0" class="">Aligns the input polyline seams based on proximity to a reference point. Works only for closed polylines. Open polylines remain unmodified.</p><p id="401b7837-d5a9-4587-883e-a12dd8b7523c" class=""><em>Inputs:</em></p><ul id="9606e87f-f0ba-44c1-81ed-5cad820511c5" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="3854f0f2-9880-454e-aae4-7bf051c36ff4" class="bulleted-list"><li><strong>RefPtX</strong> (decimal) | Reference point coordinate in workspace X-axis in mm</li></ul><ul id="4f341c51-252d-4bef-8f6d-5be1af147d94" class="bulleted-list"><li><strong>RefPtY</strong> (decimal) | Reference point coordinate in workspace Y-axis in mm</li></ul><ul id="a26db44f-567b-4f25-a00d-394aa4c3187e" class="bulleted-list"><li><strong>RefPtZ</strong> (decimal) | Reference point coordinate in workspace Z-axis in mm</li></ul><ul id="fb4c996d-6ea7-4093-a4ef-590e40262f27" class="bulleted-list"><li><strong>ClosestNeighbour </strong>(boolean) | If closest neighbour is disabled, the closest point of a polyline to the reference point becomes the new seam. If enabled, the first polyline&#x27;s new seam is the closest point to the reference point and each consecutive element&#x27;s new seam is the closest point to the previous element&#x27;s new seam.</li></ul><ul id="e17e8b26-db81-43a3-949f-7f1e99eb0616" class="bulleted-list"><li><strong>IgnoreZ </strong>(boolean) | If enabled, the reference point Z value is ignored and the reference point has coordinates (refPtX, refPtY, polylineAverageHeight)</li></ul><p id="790f6962-2eda-461d-bbc3-bcc160ac7c11" class=""><em>Outputs:</em></p><ul id="7b9d674f-5a20-420f-900c-0f2c11d695f0" class="bulleted-list"><li><strong>Out</strong> (Polylines) | Polylines with aligned seams</li></ul><hr id="7b3635cc-bb90-45df-aeb1-c339be5af9e3"/><h3 id="0ed276ba-0821-40d7-beca-5a5c904bb4dd" class="">Brim</h3><p id="782fbc74-1c14-4199-ba52-f44f2ab871bf" class="">Creates a brim for the input solid geometry on the horizontal plane located at workspace z zero. If the input geometry is not on z=0, no brim will be created. Returns a list of a contours as polylines.</p><p id="881111c0-a9b9-4175-9404-c1e9269600aa" class=""><em>Inputs:</em></p><ul id="6b740cb7-564f-45f9-921b-9e023e3d8bdf" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="db6c9153-d3b3-4644-b598-78451cc00ddc" class="bulleted-list"><li><strong>LineWidth </strong>(decimal) | Thickness of brim lines defined in mm</li></ul><ul id="a479057c-caa6-4e06-ab8b-73cb973ed058" class="bulleted-list"><li><strong>LineCount </strong>(integer) | Number of brim lines</li></ul><p id="1f027dbd-0893-450a-a6bc-2b7846118c21" class=""><em>Outputs:</em></p><ul id="7a589a82-462e-4cd2-b0e6-9694908a6fb0" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="f328f125-e4be-4af4-a10f-7c399b297b2e"/><h3 id="66727654-b640-4990-9015-4799f9a9c758" class="">Close Polylines</h3><p id="67dff45f-06e5-44fe-8824-702c6c270916" class="">Returns a list of closed polylines. If any open polylines are detected, it makes them closed by connecting their endpoints with a line segment.</p><p id="d003189c-ed40-4871-b167-d7ed38c8726a" class=""><em>Inputs:</em></p><ul id="c79fd8df-eddf-40b7-a38f-cadaa356d3c1" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="71b0a3c4-09f5-4115-8714-e44e0cf6e4d5" class=""><em>Outputs:</em></p><ul id="14b6572b-189f-44ae-bd25-3a008bc2908b" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="14487016-a95d-492c-bef8-1b4ad37bb170"/><h3 id="3eeef881-78c5-4054-9a80-73be96b2d894" class="">Connect Open Polylines</h3><p id="2b8f66a7-855a-464e-8abe-d436a5776a15" class="">Detects open polylines and connects them together, either per list or per layer. There is the option to make the output polylines closed.</p><p id="2bdcecfa-6348-4f60-967f-09754f8b417b" class=""><em>Inputs:</em></p><ul id="888e5fd5-e7c0-435e-b76c-78065d74aec4" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="63b9d8d9-67cc-4cdd-a067-705bc5567457" class="bulleted-list"><li><strong>ConnectPerLayer </strong>(boolean) | If enabled, open polylines will be grouped in layers and the connection operation will be applied per layer. If disabled, all the open polylines will connect into one polyline.</li></ul><ul id="9287f6f5-85d0-4819-9213-f793fb1b842b" class="bulleted-list"><li><strong>MakeClosed </strong>(boolean) | If enabled, the resulting connected polylines will become closed by adding a line segment that connects the first with the last point of each polyline.</li></ul><p id="9fe6294e-ecfc-433a-b028-bfa5d8f1eb0d" class=""><em>Outputs:</em></p><ul id="76e0e8c6-04b6-4f58-b3d7-b0bde94d5a10" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="b46c8567-dcc1-4482-907a-61ddfce937d7"/><h3 id="a51fad9f-add0-442c-a010-8ef7c482ddf7" class="">Contours At Plane</h3><p id="0406e2fa-848a-4c02-9cfd-344c4f35476c" class="">Returns the intersection between a plane and a solid geometry as polylines.</p><p id="c3dff08a-c127-4678-8219-0cc2f9eeb47d" class=""><em>Inputs:</em></p><ul id="bc2c6ff7-54cd-4bcd-85e5-b864c1f1f433" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="2df17523-02a9-4854-acb0-f281cb66d814" class="bulleted-list"><li><strong>GuidePtX </strong>(decimal) | X coordinate of plane origin in mm</li></ul><ul id="954552ca-6de6-4573-b95c-6f74cdddfafd" class="bulleted-list"><li><strong>GuidePtY </strong>(decimal) | Y coordinate of plane origin in mm</li></ul><ul id="87a6f99e-6dc0-4308-85df-ff031da64b27" class="bulleted-list"><li><strong>GuidePtZ </strong>(decimal) | Z coordinate of plane origin in mm</li></ul><ul id="9d4fca8f-f98b-402f-a917-b3286849bb01" class="bulleted-list"><li><strong>PlaneRotX </strong>(decimal) | Plane angle in relation to the horizontal plane in workspace X-axis around the guide point in degrees</li></ul><ul id="ec5457cc-1b9e-4a5f-a6d4-70948f7f95a8" class="bulleted-list"><li><strong>PlaneRotY </strong>(decimal) | Plane angle in relation to the horizontal plane in workspace Y-axis around the guide point in degrees</li></ul><ul id="da134d56-ad17-4b89-b0a4-20acb351fee6" class="bulleted-list"><li><strong>PlaneRotZ </strong>(decimal) | Plane angle in relation to the horizontal plane in workspace Z-axis around the guide point in degrees</li></ul><p id="ee807273-4fe7-4198-b632-b097388c3dbe" class=""><em>Outputs:</em></p><ul id="daf051e3-1531-497b-84cc-50d007fee2d6" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="4d56d3f4-e124-438f-b264-92dc33cff20a"/><h3 id="59310fd8-78b9-4dc1-94d8-0ff02f1c843d" class="">Get Naked Edges From Mesh</h3><p id="9ea6b811-e18e-4abf-9ee3-9c9d37d43427" class="">Returns the naked edges (borders) of an open mesh as a list of polylines. If the input mesh is closed, the output of this operator will be empty.</p><p id="8a355412-62ce-4f4c-968b-34583de00417" class=""><em>Inputs:</em></p><ul id="38ef5730-cec9-4d6f-9d13-d15d3b566ba6" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><p id="e8ae3dfe-5734-4bfb-b115-7229399c1ac2" class=""><em>Outputs:</em></p><ul id="c7673b12-aa7f-4c0e-b4d3-dadde7f34120" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="e746c3ef-b531-4ba7-a7bf-a94be17cb0bd"/><h3 id="ea319d82-3a10-4c71-966b-c06754c8ac78" class="">Infill 2D</h3><p id="0a4afc48-c573-43cb-8f1f-e7831ddb4e7b" class="">Creates a 2D infill inside the input list of polylines. If a polyline in the list is open it will be excluded from the calculations. The infill pattern is a continuous zig zag. If layer data is available, the infill is applied per layer instead of per polyline. Each alternate layer is rotated by 90 degrees.</p><p id="a2d6c280-51fe-40e7-abe7-901674628c73" class=""><em>Inputs:</em></p><ul id="a9abeaec-b90a-434e-aa39-4bad78dfb160" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="583086d8-1f72-4155-9a21-434c328d9054" class="bulleted-list"><li><strong>Density </strong>(decimal) | Infill density. Range is 0-1 (0% - 100%)</li></ul><ul id="e8ec4252-adb0-491e-895f-bd408a1928cf" class="bulleted-list"><li><strong>LineWidth </strong>(decimal) | Thickness of infill lines defined in mm</li></ul><ul id="eb216873-d845-45b4-8864-31515e2634a7" class="bulleted-list"><li><strong>Rotation </strong>(decimal) | Pattern rotation in relation the workspace XY-plane in degrees</li></ul><ul id="bd761f6f-50d7-419c-b846-b8550ceccd95" class="bulleted-list"><li><strong>PerimeterGap </strong>(decimal) | Offset distance from the input polylines defined in mm</li></ul><ul id="ea6f74cf-43d1-47e0-b382-59de164ff69c" class="bulleted-list"><li><strong>AlternateRotation </strong>(boolean) | If enabled, infill is rotated by 90 degrees in every alternate layer</li></ul><p id="be4b732d-ab99-41cf-ad91-4287d34168db" class=""><em>Outputs:</em></p><ul id="e55ada4f-7aaa-4d39-b849-32a68dc57721" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="fd500939-afe1-4ffa-8ce7-12dab8afc004"/><h3 id="cb54812a-c865-4bb8-b5d7-1c3310b2daba" class="">Join Meshes</h3><p id="da72fb03-e160-40ce-aba6-68372ddbf96f" class="">Returns the combined data of two solid geometries. No union operation is performed and the geometries remain unmodified. </p><p id="42f97e87-48f4-4131-b3b1-0a930e330b10" class=""><em>Inputs:</em></p><ul id="6e09a702-db40-41c4-bdee-01e5805beb98" class="bulleted-list"><li><strong>InputA </strong>(Mesh)</li></ul><ul id="d1f75366-3a98-48a5-b57a-4ceac03994cc" class="bulleted-list"><li><strong>InputB </strong>(Mesh)</li></ul><p id="24e7a58a-f665-4881-8b4b-2cfa42a98670" class=""><em>Outputs:</em></p><ul id="c92ab21c-042f-46d9-9864-9d3e78b61caa" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="e0eff549-7d92-463c-b7f8-2cdd2476de57"/><h3 id="b89ad90a-d93d-40cf-a5be-14df7bceebd7" class="">Make Uniform</h3><p id="a1c3afd3-0e15-4480-9932-c6075ad045bc" class="">Unifies the direction of the closed input polylines.</p><p id="d844fa19-a885-403c-90fa-3bc5790c8dda" class=""><em>Inputs:</em></p><ul id="f68c6764-9a4e-4a27-ba49-e1b8ba53af8c" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="87fb2825-a7b6-4424-9b74-631d264c8bb8" class=""><em>Outputs:</em></p><ul id="702435dc-fedf-459b-b087-31b75707d1ff" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="a9bdcd5a-32cf-4cd4-9c8b-228dc5d7330c"/><h3 id="d133a193-2a27-4bb2-9079-5b6f3f9fcbae" class="">Offset</h3><p id="d6f203a1-b310-4a2f-bb9e-e3d971bc3ae1" class="">Offsets the input polylines by a specified distance. Positive distance offsets internally and negative distance externally. Operator works only for closed polylines.</p><p id="021b44fd-1076-42a8-a296-a7f31a07153c" class=""><em>Inputs:</em></p><ul id="329595dd-8a4e-4d55-bcd8-2f4aa03f2e42" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="f4fba423-cc79-405d-a076-3bb82238b4bf" class="bulleted-list"><li><strong>Distance </strong>(decimal) | Offset distance in mm</li></ul><ul id="f5c75b29-b66b-452e-9dac-a64d4084f743" class="bulleted-list"><li><strong>Count </strong>(integer) | Number of offset operations</li></ul><ul id="0f2066f2-9f6d-40c6-84c2-c5c857e67d1f" class="bulleted-list"><li><strong>InputType </strong>(selection) | If POLYLINE is selected, the offset operation will be applied per polyline. If LAYER is selected, the offset operation will be applied per layer, so the union of the polylines on a layer will be returned.</li></ul><p id="3f352dfb-209b-45ef-8f54-a410fc3ec75d" class=""><em>Outputs:</em></p><ul id="b784b477-d3be-49e5-85d7-05687a7eb631" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="c609da3e-7316-490f-aa6f-369b4c7aee5f"/><h3 id="9dd5d024-d925-4d6d-9331-8243dbe4d43b" class="">Primer</h3><p id="c05b24dd-3e08-46f1-b629-500a1500d8aa" class="">Adds a primer in the input polyline geometry. A primer is a line of specified length that is located on the base layer at a distance from the geometry and it is always printed first in order to ensure that the extruder nozzle is clean from any dry material before beginning printing the actual object geometry.</p><p id="8c37b5a4-dbb7-460f-9479-c34ca5eafa5b" class=""><em>Inputs:</em></p><ul id="b612920b-7410-4638-977d-f6bcd99c37cd" class="bulleted-list"><li><strong>In </strong>(Polylines) | Input polylines</li></ul><ul id="ab9adc60-6987-46d9-80f7-7b02c6ea0e66" class="bulleted-list"><li><strong>PrimerLength </strong>(decimal) | The length of the primer line in mm</li></ul><ul id="0e52db83-9db7-4d9f-8c7e-c13c5a08ebf7" class="bulleted-list"><li><strong>DistanceFromGeometry </strong>(decimal) | The distance of the primer from the geometry in mm</li></ul><ul id="80a3e7c2-b70f-440e-8f55-637cb31c8c9a" class="bulleted-list"><li><strong>PrimerThickness </strong>(decimal) | Thickness of the primer line in mm</li></ul><ul id="838b925a-e0d3-491c-aa87-999007b1227b" class="bulleted-list"><li><strong>PrimerHeight </strong>(decimal) | Height of the primer line in mm</li></ul><p id="e34ea6e5-d74c-47b4-8b09-163571009230" class=""><em>Outputs:</em></p><ul id="f550ca6c-5325-4db0-b9e4-fe4102eb5fab" class="bulleted-list"><li><strong>OutMerged </strong>(Polylines) | The primer geometry merged with the input geometry</li></ul><ul id="aff3a079-ed78-4a32-a197-1cbdb3a68b0c" class="bulleted-list"><li><strong>Out </strong>(Polylines) | The pimer geometry</li></ul><hr id="9dd92fc3-cd1e-4072-87b1-ba8518ccb051"/><h3 id="82e46c8e-6eba-45fc-a8b8-a66704cd6393" class="">Rebuild Polylines</h3><p id="c7f296f0-3d45-4105-87d3-829f8647d42a" class="">Rebuilds the input polylines by increasing the point density at the specified density.</p><p id="a6b37d4f-cc38-4167-b7bf-68ab1ecf2801" class=""><em>Inputs:</em></p><ul id="9b8a025d-d406-4d16-bc78-2156628eabd7" class="bulleted-list"><li><strong>In </strong>(Polylines) | Input polylines</li></ul><ul id="6dfdd83c-fe7b-460a-adb1-d0a87f72897a" class="bulleted-list"><li><strong>MaxSpacing </strong>(decimal) | Maximum spacing between points. If any two points of a polyline are spaced apart more than the defined maxSpacing, a new point will be added between them</li></ul><p id="115416f1-913e-4d44-9979-a545ae1de056" class=""><em>Outputs:</em></p><ul id="0132c2ba-191b-4b86-bc48-d2f9277bb4ab" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="d96b3a38-add1-4b88-b24f-b2be2d06481e"/><h3 id="7ea7bfd9-40f5-432a-ba94-fa19f3d077eb" class="">Reduce Density</h3><p id="e99cb388-bb87-48f2-ba3c-f07da06044a4" class="">Reduces the point density of the input polylines with the option of preserving sharp features of the geometry.</p><p id="42bac935-072f-4820-8d58-1e8ee64dd64c" class=""><em>Inputs:</em></p><ul id="1712c325-34fc-49a9-b7f6-45401a24eb39" class="bulleted-list"><li><strong>In </strong>(Polylines) | Input polylines</li></ul><ul id="ddd08f2a-ac99-4694-a252-f57207c857da" class="bulleted-list"><li><strong>MinPtSpacing </strong>(decimal) | The minimum spacing between polyline points. If the distance between two neighbour points is smaller than the minPtSpacing, the second point will be removed</li></ul><ul id="ed05ebbe-a323-436f-a7fe-654046cb07e8" class="bulleted-list"><li><strong>MaxAngle </strong>(decimal) | The maximum angle limit in degrees for preserving the geometry without removing the corner points</li></ul><p id="6b72a3b4-bbd1-448d-b129-bd9de81e1e7e" class=""><em>Outputs:</em></p><ul id="2bb7bef7-9e34-4c3e-9ce1-4ae3be6bb9c9" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="0517da0f-e6c2-4aca-820f-9760fb032006"/><h3 id="1bd97eed-c763-45da-9402-cdf4884a0906" class="">Reverse Direction</h3><p id="86ce409a-8b0f-43e1-bf21-3d1d9b517e94" class="">Reverses the direction of the input polylines.</p><p id="9b5b1da2-b6e4-4f43-abad-beca0b83e0be" class=""><em>Inputs:</em></p><ul id="50536357-a1b8-4357-a3a2-17343fb40670" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="f702d1d5-463c-41fe-86df-43e85ffbf6e2" class=""><em>Outputs:</em></p><ul id="7683521c-7dcb-4bcc-9538-4eaa465f3f2a" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="89fb35d0-41bc-4235-880f-2777bbd7bf25"/><h3 id="e145c88f-7847-4b0a-891e-f718cb293326" class="">Spiral</h3><p id="9a30ee79-bbaa-4dbb-a73b-7c2191fed7f2" class="">Creates a continuous spiral from a list of polylines. The polylines need to be sorted, with unified direction and with their seams aligned. The spiral is created through interpolation of neighbour polylines.</p><p id="173b2d97-0d26-4efd-b663-c382265cb735" class=""><em>Inputs:</em></p><ul id="6749f9f4-7380-4d01-bec6-6033b4a5789f" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="a9071e78-2927-4fde-a2b8-198b0a8e4fe4" class="bulleted-list"><li><strong>Divisions </strong>(integer) | Number of divisions per polyline to define the resolution of the spiral. Higher number of divisions increases the resolution.</li></ul><p id="cb8543ef-6127-4e7e-8903-6a85edace485" class=""><em>Outputs:</em></p><ul id="b69f71d7-4700-4f77-9f00-b4b1f6c7d6e8" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="8fcda264-8324-4fdd-87f8-cf0f32be8e4d"/><h3 id="28c39544-efd8-4f95-8b33-0bb2ed720133" class="">Tween Meshes</h3><p id="5323e6d1-164c-4642-8c77-1652562fa8cf" class="">Returns an interpolated list of meshes between two input meshes. The meshes need to be similar and have the same number of triangles.</p><p id="08e97ee1-e5ff-4258-91b2-5bb7e4b9dedc" class=""><em>Inputs:</em></p><ul id="575b623b-8913-49e8-8c67-bdd8c9b467bf" class="bulleted-list"><li><strong>InputA </strong>(Mesh)</li></ul><ul id="1bda00ed-94f7-4bca-853a-04d9252f1e94" class="bulleted-list"><li><strong>InputB </strong>(Mesh)</li></ul><ul id="cbfd612d-ed6a-4473-a140-660ecb8fc1c9" class="bulleted-list"><li><strong>Count </strong>(integer) | Number of interpolated meshes</li></ul><p id="cbb9c1c6-77de-4863-9140-6f0ce5a55822" class=""><em>Outputs:</em></p><ul id="0bd5aafe-11f9-4574-9c14-fa2deadb1e7a" class="bulleted-list"><li><strong>Out</strong> (Meshes)</li></ul><hr id="b65069c9-b918-40ee-963d-442e060090fe"/><h3 id="92f15d35-6a3e-4a68-bdc4-2d5991cf6879" class="">Tween Polylines</h3><p id="76838584-38ba-48db-96fd-9228a659670e" class="">Returns an interpolated list of polylines between two input polylines. Both polylines need to have same direction and aligned seams. Both polylines need to be either closed or open.</p><p id="b49e94e4-79e0-446a-8d17-9d1d6de70c2b" class=""><em>Inputs:</em></p><ul id="e13868b9-d5c6-4082-93ba-ae9ca2b53663" class="bulleted-list"><li><strong>InputA </strong>(Polyline)</li></ul><ul id="c4f2a456-3eca-48d6-89b9-98f5f91cfb73" class="bulleted-list"><li><strong>InputB </strong>(Polyline)</li></ul><ul id="db0f44a5-9b45-4706-918e-7852b4f40660" class="bulleted-list"><li><strong>Count </strong>(integer) | Number of interpolated polylines</li></ul><ul id="6eac28ba-1b11-4978-95ad-be19e95220d1" class="bulleted-list"><li><strong>Divisions </strong>(integer) | Number of divisions per polyline to define the resolution of the interpolated polylines.</li></ul><p id="47820476-1fae-43bd-8c11-9029747e634d" class=""><em>Outputs:</em></p><ul id="7b47f4fe-e4e2-448c-b711-a6701171a0ae" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="83d3205f-7e5d-492a-96c0-543182c005ab"/><hr id="f8a2b4a2-df35-47b0-9709-08fccaed7394"/><h2 id="e5ca53df-eb4f-4adc-b7ea-02ca4255a822" class="">SEQUENCING</h2><hr id="f0dfc2ee-a728-435f-a72a-2674b7357014"/><h3 id="913ffbb1-e5fd-420b-a917-aa6fb0639b0f" class="">Sort By Area</h3><p id="489cb49d-70be-449a-8a82-2cc1fc328f1e" class="">Returns the sorted input list of polylines based on polyline area in ascending order. Works only for closed polylines.</p><p id="30a3053d-8cff-470f-a20d-6d1a8588d42a" class=""><em>Inputs:</em></p><ul id="bd42cf4f-9ba9-4442-85eb-c63217e66e09" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="78e3fedc-6fde-4cfb-9312-b9aa658e9d44" class=""><em>Outputs:</em></p><ul id="fb1a3c9b-1875-46b3-896b-bcc2e520e0e4" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="6ab3e731-05b6-4625-8f1e-233ebe9d9466"/><h3 id="cfc8d378-0701-4d9f-b4df-91a9f44c3895" class="">Sort By Average Height</h3><p id="d250cae0-8571-48c3-9aac-418681fbc16e" class="">Returns the sorted input list of polylines based on polyline average height in ascending order.</p><p id="72e86334-696f-4456-8168-f1ce9d3eff91" class=""><em>Inputs:</em></p><ul id="ce891958-24c5-4fcc-987b-0cfc4a53c39e" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="997fd063-6e2e-410f-9b2a-fe36776a4d38" class=""><em>Outputs:</em></p><ul id="e0433ae7-214a-403d-8e93-3f2fbeb6b22d" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="15f4149b-b9c4-4dea-a7a7-c8e919c43313"/><h3 id="701f6f35-1da4-4184-b493-8153803aebee" class="">Sort By Layer</h3><p id="b9374019-581a-46ba-a15f-416b5cb55bc8" class="">Returns the sorted input list of polylines based on polyline layer in ascending order.</p><p id="6e66f5c8-77fe-4475-8573-69a69367f3ff" class=""><em>Inputs:</em></p><ul id="087314ab-6179-417d-9e6f-9fd1e551ebcf" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="403ecffe-14af-4e91-97c8-262642cc1338" class=""><em>Outputs:</em></p><ul id="c4f35ddd-8cbb-44f6-8436-e0cf4c3b9dbd" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="907a53f0-b640-46a7-a9c4-13385295dcc3"/><h3 id="1e2bb0fe-e750-4461-a64f-8320ed0af5e2" class="">Sort By Layer Linetype</h3><p id="90cf9371-e8e5-4ceb-8566-8dbd22f2ef72" class="">Returns the sorted input list of polylines based on polyline layer and linetype. The list is first sorted based on layer and the elements of each layer are sorted based on linetype. The linetype sequence is [ OUTER_WALL, INNER_WALL, INFILL, SUPPORT, SKIN].</p><p id="476a99f5-100e-4a6c-97f3-98092e569fe3" class=""><em>Inputs:</em></p><ul id="fb6d4520-aa4e-45cf-8748-a205c29576c6" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="7aa07817-397b-410b-b66d-de13988baa6d" class=""><em>Outputs:</em></p><ul id="0934af19-63d7-4f70-9d53-d3c0a056517f" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="0d2b4176-77b9-4c3c-ab5c-b14fda77a364"/><h3 id="5b896d10-29c7-4654-8137-ac1891269507" class="">Sort By Length</h3><p id="1dcd30f6-61a2-49a9-8442-529e1cd2ca3e" class="">Returns the sorted input list of polylines based on polyline length in ascending order.</p><p id="9f00bf1a-57b1-4e8f-bbaa-d8bfb0235275" class=""><em>Inputs:</em></p><ul id="12a8cc3e-30c5-4fe7-80e7-1171a470dd77" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="e479a170-73d4-424b-8084-1ed28d118e20" class=""><em>Outputs:</em></p><ul id="91cb5d5f-a314-48a2-88c5-43795d6b5161" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="ff7374f2-785d-4373-9d0b-91c037b3f3e3"/><h3 id="6d156e05-5943-4f0b-be4a-a58647968830" class="">Sort By Linetype</h3><p id="20e3e0f5-96b2-4973-a80b-5f941abb7ae2" class="">Returns the sorted input list of polylines based on polyline linetype. The linetype sequence is [ OUTER_WALL, INNER_WALL, INFILL, SUPPORT, SKIN].</p><p id="f19a7f16-63ab-4b18-b727-cbb985131fa7" class=""><em>Inputs:</em></p><ul id="03b435cf-11dd-491f-a9a5-7494c056cab1" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="83f49244-09a4-4c83-ae1d-0f2b4093401f" class=""><em>Outputs:</em></p><ul id="d8a54fe5-350b-433f-89b6-369169988f3b" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="d26fa369-0747-4003-b6b2-65c39bc1edcc"/><hr id="25cc662d-edcf-4bb1-8084-00d6772f35d9"/><h2 id="d977e402-a382-4f87-bfad-eb2550adb5b3" class="">TRANSFORMATIONS</h2><hr id="122b6c90-bda9-4a9e-a63d-3ee73a370f5e"/><h3 id="b2cf459c-2289-4e46-a5d6-aaa6d037e024" class="">Center Mesh</h3><p id="88bc7459-7a1c-4af4-92cb-ebcc4ebfbbd2" class="">Centers the input mesh on the printing bed.</p><p id="1862baec-bf1a-4c57-bf9b-0599624a35d5" class=""><em>Inputs:</em></p><ul id="c55e331f-dfc6-4ea0-ac62-c83c9226f186" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><p id="0a366a72-39ae-4a7d-8e7c-c95c42519389" class=""><em>Outputs:</em></p><ul id="6b6a27d6-dc54-4712-b1b1-17336df6d949" class="bulleted-list"><li><strong>Out </strong>(Mesh)</li></ul><hr id="420e868f-c127-4103-a163-dfe93b716ea9"/><h3 id="9b230f03-2091-4f48-87d4-f930b28143a1" class="">Center Polylines</h3><p id="e4582274-7175-4616-a00f-2f0ca0e31b7d" class="">Centers the input polylines on the printing bed.</p><p id="542e1717-f5e6-4ec3-bed6-7c034bf88390" class=""><em>Inputs:</em></p><ul id="1afa518e-059f-49b9-bba0-1c1ba1d717a2" class="bulleted-list"><li><strong>In </strong>(Polylines) </li></ul><p id="e3acc430-f99b-4705-8910-52323832e062" class=""><em>Outputs:</em></p><ul id="5cf2a2e5-74d5-4b9b-a463-dd59886f4cb1" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="1e3dcd46-2db6-4312-bd6c-693a093956d4"/><h3 id="abecef30-fe4d-4c25-baa2-c5a3c10cf633" class="">Move Mesh</h3><p id="fb2ca205-c675-485a-864a-8ba8cd9eab65" class="">Translates the input mesh on the workspace by the specified amount.</p><p id="e6147a8e-7d55-48b5-a1e6-b7f92ea830ee" class=""><em>Inputs:</em></p><ul id="8c7e7dba-7e43-4c6d-ae84-6b8222b99478" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="58c8e600-729c-42a1-b4c4-83ad5d8d8c41" class="bulleted-list"><li><strong>MoveX </strong>(decimal) | Translation in the bed X direction defined in mm</li></ul><ul id="7f4b9424-0572-4a80-8d26-71fff07b6e5e" class="bulleted-list"><li><strong>MoveY </strong>(decimal) | Translation in the bed Y direction defined in mm</li></ul><ul id="136ee6a6-bc46-4f6b-aa52-cd4c8209fb71" class="bulleted-list"><li><strong>MoveZ </strong>(decimal) | Translation in the bed Z direction defined in mm</li></ul><p id="071de9b6-d8a9-4812-8266-5e18a133494e" class=""><em>Outputs:</em></p><ul id="4c2e5890-1d18-41c8-b25f-e7ee8d338c09" class="bulleted-list"><li><strong>Out</strong> (Mesh)</li></ul><hr id="865b8d16-aa48-4424-b755-feb1d9532a11"/><h3 id="4d3c5a7c-6826-4e26-8e7a-d74446d1475f" class="">Move Polylines</h3><p id="c7ab6aa1-ea7e-41cd-8993-387ef40bae1d" class="">Translates the input polylines on the workspace by the specified amount.</p><p id="9c159b16-2e19-434c-a543-ef1dd197b1b6" class=""><em>Inputs:</em></p><ul id="6016ba91-3cb3-4b63-b97b-0fedffb07c30" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="f227ef02-cad1-4927-8906-8b3e3a16701e" class="bulleted-list"><li><strong>MoveX </strong>(decimal) | Translation in the bed X direction defined in mm</li></ul><ul id="4d68c7d2-99ad-420f-84dd-444850eec5fc" class="bulleted-list"><li><strong>MoveY </strong>(decimal) | Translation in the bed Y direction defined in mm</li></ul><ul id="ce6c578d-43d1-4db3-b0a7-befc2766a74a" class="bulleted-list"><li><strong>MoveZ </strong>(decimal) | Translation in the bed Z direction defined in mm</li></ul><p id="e3de8824-80e9-42b1-ab71-960f913e74b8" class=""><em>Outputs:</em></p><ul id="e539577c-3998-4df9-9658-39e32755ea92" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="2195c487-1c32-427f-bcd0-2fa957ebef53"/><h3 id="3b0d4d89-1309-4c7e-add8-5df9bfe38f93" class="">Move Mesh To Base</h3><p id="fc691c66-d649-4d7e-8a39-fab69ddca662" class="">Transforms the input mesh in the workspace z direction to sit on the base plane with z = 0.</p><p id="a8dff09f-0803-4f9b-83b0-0168da4845a3" class=""><em>Inputs:</em></p><ul id="d124434c-a6b4-4227-95ec-1a9a8f939b63" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><p id="45791400-7412-45c7-bd8b-49d86e6ed9d8" class=""><em>Outputs:</em></p><ul id="a2ff9562-9bae-4f4a-aaab-693232b5a3cc" class="bulleted-list"><li><strong>Out</strong> (Mesh)</li></ul><hr id="0551bcd4-687a-463b-98c1-2f2986fe126c"/><h3 id="c272ba87-88e5-41a6-9c12-2e58b5287a3b" class="">Move Polylines To Base</h3><p id="ab747a4e-d118-4df8-bb24-5174d88d43fe" class="">Transforms the input polylines in the workspace z direction to sit on the base plane with z = 0.</p><p id="e6db9476-f111-44ce-a0b7-3fe830930901" class=""><em>Inputs:</em></p><ul id="fbcb6d8f-8177-4e04-97f3-43bf50466962" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><p id="4b96f503-b444-4a1c-840c-c8ff9cc34198" class=""><em>Outputs:</em></p><ul id="0132565c-fb65-44aa-9eeb-65f4c222d4f4" class="bulleted-list"><li><strong>Out</strong> (Polylines)</li></ul><hr id="a00e94ba-fb80-4bfd-8ac3-0703553e419d"/><h3 id="77baa99e-2033-40c8-8eae-474f144d7911" class="">Rotate Mesh</h3><p id="ee46c549-d5b6-4cb7-a342-869b851edc7b" class="">Rotates the input mesh around its centroid in the defined rotation angles in relation to the x,y,z world direction.</p><p id="53171f32-5403-4279-af61-9e4a9fe4ad28" class=""><em>Inputs:</em></p><ul id="31ccee15-e1b9-409d-83de-27aab731fb7c" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="daa590dd-c1fe-46a7-93fd-56ff2ce5e131" class="bulleted-list"><li><strong>RotationX </strong>(decimal) | rotation angle in degrees around the world X-axis</li></ul><ul id="8250be9b-501c-4c6b-b71a-a65f753168c2" class="bulleted-list"><li><strong>RotationY </strong>(decimal) | rotation angle in degrees around the world Y-axis</li></ul><ul id="e4f517d6-814d-49f7-b0c8-ff32a6355883" class="bulleted-list"><li><strong>RotationZ </strong>(decimal) | rotation angle in degrees around the world Z-axis</li></ul><p id="8e094adf-9a72-4583-9ec1-0d770aeef2a4" class=""><em>Outputs:</em></p><ul id="78342449-4b02-4c62-9255-e762ac834e84" class="bulleted-list"><li><strong>Out </strong>(Mesh)</li></ul><hr id="1a487e3e-6c17-4b96-9017-494a5d4d6848"/><h3 id="31dd975f-f42c-4ada-8528-13f518e590db" class="">Rotate Polylines</h3><p id="78009beb-5933-44ac-b83e-dc44c1056b96" class="">Rotates the input polylines around their centroid in the defined rotation angles in relation to the x,y,z world direction.</p><p id="14b937aa-15ee-41e8-b41b-d6377304d7b7" class=""><em>Inputs:</em></p><ul id="37cc0b72-db5e-4f91-83df-cd872ea7106f" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="23d93c56-1832-4c58-b8f7-77052881737f" class="bulleted-list"><li><strong>RotationX </strong>(decimal) | rotation angle in degrees around the world X-axis</li></ul><ul id="931cbc9f-ccda-4945-b7df-8008a3587904" class="bulleted-list"><li><strong>RotationY </strong>(decimal) | rotation angle in degrees around the world Y-axis</li></ul><ul id="f701c4a9-9a30-4105-a315-b28397e15561" class="bulleted-list"><li><strong>RotationZ </strong>(decimal) | rotation angle in degrees around the world Z-axis</li></ul><p id="0159bc0b-a533-4f54-865d-8d0f1aa7e4ea" class=""><em>Outputs:</em></p><ul id="3041028b-d478-43c4-813c-0adc779dca51" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="1c9fabf5-301e-4b5b-9b5b-ae63fb08e64a"/><h3 id="5a167e2d-1088-4772-86bf-a64c166637db" class="">Scale Mesh</h3><p id="b7d3f0d2-862e-482d-8094-457f43e90cc1" class="">Scales the input mesh around its centroid with the defined scaling factors in x,y,z direction.</p><p id="9e798419-be9d-4df0-9d4f-522d040727d5" class=""><em>Inputs:</em></p><ul id="0c2e1e2e-368d-4760-aaf4-c4ea3a14daab" class="bulleted-list"><li><strong>In </strong>(Mesh)</li></ul><ul id="567787d0-8083-4c3f-943d-20d4b37e7512" class="bulleted-list"><li><strong>ScaleX </strong>(decimal) | scaling factor in the world-X axis direction</li></ul><ul id="7a543b7b-3667-48af-92c5-2328b724c8b8" class="bulleted-list"><li><strong>ScaleY </strong>(decimal) | scaling factor in the world-Y axis direction</li></ul><ul id="eb619d7d-4193-440f-845c-affb5fb51195" class="bulleted-list"><li><strong>ScaleZ </strong>(decimal) | rscaling factor in the world-Z axis direction</li></ul><p id="df9561a2-3156-463f-9cb3-819c7cdd8932" class=""><em>Outputs:</em></p><ul id="0bc99fcc-6f25-4a8d-8c4f-07e0b5b6aa3f" class="bulleted-list"><li><strong>Out </strong>(Mesh)</li></ul><hr id="26ee289c-6a18-4906-9828-6992a9309a67"/><h3 id="e290a389-7975-4aec-96ba-7fe946e85264" class="">Scale Polylines</h3><p id="99c4823b-a887-4d21-b6d8-47152c493ec3" class="">Scales the input polylines around their centroid with the defined scaling factors in x,y,z direction.</p><p id="9ba6bb19-c3ca-429b-87fe-3c675fa5b479" class=""><em>Inputs:</em></p><ul id="f2f8ed45-a6b9-4bd1-b2b8-07a2186f5cf1" class="bulleted-list"><li><strong>In </strong>(Polylines)</li></ul><ul id="4185c12c-f29b-4737-9e6d-a27c940c2f75" class="bulleted-list"><li><strong>ScaleX </strong>(decimal) | scaling factor in the world-X axis direction</li></ul><ul id="27fb9c3a-cfea-4a0f-90db-ef13158cddd2" class="bulleted-list"><li><strong>ScaleY </strong>(decimal) | scaling factor in the world-Y axis direction</li></ul><ul id="fcd607ba-47b5-4c9c-b054-846bd7a56790" class="bulleted-list"><li><strong>ScaleZ </strong>(decimal) | rscaling factor in the world-Z axis direction</li></ul><p id="217f3aee-dfa6-4039-973b-613b6b110bfa" class=""><em>Outputs:</em></p><ul id="2fd52968-dc02-4068-b826-4fc447a80da2" class="bulleted-list"><li><strong>Out </strong>(Polylines)</li></ul><hr id="842aef94-d4f3-472c-b703-82f5651c7ce1"/><hr id="49809020-3d2d-40a4-abb0-3cad8e72d08d"/></div></article></body></html>
